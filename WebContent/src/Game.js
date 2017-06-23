@@ -88,6 +88,7 @@ BasicGame.Game.prototype = {
         gift.body.setCollisionGroup(this.giftCollisionGroup);
         gift.body.collides([ this.giftCollisionGroup, this.clawCollisionGroup,
             this.tilesCollisionGroup ]);
+        gift.body.mass = 1000;
         //gift.body.velocity.x = this.claw_speed * 20;
     },
 	closeClaw : function(isClose) {
@@ -136,7 +137,7 @@ BasicGame.Game.prototype = {
 	create : function() {
 		this.game.stage.backgroundColor = '#82abba';
 		this.game.physics.startSystem(Phaser.Physics.P2JS);
-		this.game.physics.p2.gravity.y = 1500;
+		this.game.physics.p2.gravity.y = 1000;
 		this.game.physics.p2.setImpactEvents(true);
 		this.score_text = this.game.add.text(this.game.world.centerX, this.game.world.centerY, " 分数 : " + this.score, {
             font: "65px Arial",
