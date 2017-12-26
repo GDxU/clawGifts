@@ -107,7 +107,19 @@ BasicGame.Game.prototype = {
 	clawHitHandler : function(body1, body2,hit) {
         var dx = Math.abs(body1.x - body2.x);
         var dy = Math.abs(body1.sprite.centerY - body2.sprite.centerY);
-        if(hit.boundingRadius >= 1.8 && this.claw_state == 2){
+        if (this.claw_state == 2 && this.catchAssist) {
+ 			if (dx <= 15 && dy < 50) {
+ 				this.closeClaw(true);
+ 				this.claw_sfx(2);
+ 				this.hitGift = body2;
+ 				body2.static = true;
+ 				body2.immovable = true;
+ 				body2.setZeroVelocity();
+ 				this.claw_state = 3;
+
+			} 	
+		}
+		if(hit.boundingRadius >= 1.8 && this.claw_state == 2){
             this.claw_state = 3;
             this.closeClaw(true);
         }
